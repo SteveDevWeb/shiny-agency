@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# Projet React Shiny Agency
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Cliquez ici pour le découvrir : [Shiny Agency](https://stevedevweb.github.io/shiny-agency/).
 
-## Available Scripts
+## Notions étudiées 
 
-In the project directory, you can run:
+...
 
 ### `npm start`
 

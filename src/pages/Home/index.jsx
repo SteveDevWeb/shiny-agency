@@ -1,5 +1,9 @@
 function Home() {
-    return <div>Page d'accueil 🏡</div>
-}
-
-export default Home
+    return (
+      <div>
+        <h1> Page d'accueil 🏠</h1>
+      </div>
+    )
+  }
+  
+  export default Home

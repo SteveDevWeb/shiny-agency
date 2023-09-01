@@ -5,7 +5,8 @@ Ici pour le lien [figma](https://www.figma.com/file/EigfmAsrypcKTqffY4D9Lc/Cours
 
 ## Notions étudiées 
 
-...
+Mise en page : EsLint, Prettier\
+Navigation : React Router\
 
 ### `npm start`
 

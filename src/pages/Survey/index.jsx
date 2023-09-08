@@ -77,7 +77,7 @@ function Survey() {
     `
     if (error) {
         return <Error >Oups, une erreur est survenue...</Error>
-      }
+    }
 
 
     return (

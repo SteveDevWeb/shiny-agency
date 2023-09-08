@@ -8,7 +8,8 @@ Ici pour le lien [figma](https://www.figma.com/file/EigfmAsrypcKTqffY4D9Lc/Cours
 Mise en page : EsLint, Prettier\
 Navigation : React Router => Routes, Links, useParams()\
 Typage : PropTypes\
-Style : Styled Components
+Style : Styled Components\
+API : Native
 
 ### `npm start`
 

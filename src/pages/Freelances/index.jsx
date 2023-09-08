@@ -2,6 +2,7 @@ import DefaultPicture from "../../assets/profile.png"
 import Card from "../../components/Card"
 import styled from "styled-components"
 import colors from "../../utils/style/color"
+import { useEffect,useState } from "react"
 
 const freelanceProfiles = [
     {
@@ -29,6 +30,14 @@ const freelanceProfiles = [
 
 
 
+
+
+
+
+
+
+
+//Style
 const Display = styled.section`
     display:flex;
     flex-direction:column;
@@ -58,6 +67,12 @@ const CardsContainer = styled.div`
     width:100%;
     padding:30px;
 `
+
+
+
+
+
+
 
 export default function Freelances() {
     return (

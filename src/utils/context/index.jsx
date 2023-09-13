@@ -1,13 +1,24 @@
-import { createContext , useState} from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('dark')
+
+    const savedTheme = localStorage.getItem("Theme")
+    const [theme, setTheme] = useState(
+        savedTheme ? JSON.parse(savedTheme) : "dark"
+    )
+
+    useEffect(() => {
+        localStorage.setItem("Theme", JSON.stringify(theme))
+    }, [theme])
+
+
+    
     const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light')
+        setTheme(theme === "light" ? "dark" : "light")
     }
- 
+
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
@@ -15,22 +26,17 @@ export const ThemeProvider = ({ children }) => {
     )
 }
 
-
-
-
-
 export const SurveyContext = createContext()
 
 export const SurveyProvider = ({ children }) => {
-  const [answers, setAnswers] = useState({})
-  const saveAnswers = (newAnswers) => {
-    setAnswers({ ...answers, ...newAnswers })
-  }
+    const [answers, setAnswers] = useState({})
+    const saveAnswers = (newAnswers) => {
+        setAnswers({ ...answers, ...newAnswers })
+    }
 
-  return (
-    <SurveyContext.Provider value={{ answers, saveAnswers }}>
-      {children}
-    </SurveyContext.Provider>
-  )
+    return (
+        <SurveyContext.Provider value={{ answers, saveAnswers }}>
+            {children}
+        </SurveyContext.Provider>
+    )
 }
-

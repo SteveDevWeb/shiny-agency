@@ -2,13 +2,15 @@ import styled from "styled-components"
 import colors from "../../utils/style/color"
 import homeIllustration from "../../assets/home-illustration.svg"
 import { Link } from "react-router-dom"
+import { ThemeContext } from "../../utils/context/index"
+import { useContext } from "react"
 
 const HomePage = styled.section`
-    background: ${colors.backgroundLight};
+    background: ${({ isDarkMode }) => (isDarkMode ? colors.darkModeLight : colors.backgroundLight)};
     margin-left: clamp(10px, 5%, 65px);
     margin-right: clamp(10px, 5%, 65px);
-    min-height: calc(100vh - 100px);
-    padding: 0 5%;
+    min-height: calc(100vh - 200px);
+    padding: 5% 5%;
     display: flex;
     align-items: center;
 `
@@ -19,11 +21,10 @@ const Display = styled.div`
 `
 
 const HomeTitle = styled.h1`
-    font-size: 50px;
-    line-height: 80.25px;
+    font-size: 45px;
+    line-height: 70px;
     font-weight: 700;
-    color: #2f2e41;
-    margin-bottom:50px;
+    margin-bottom: 50px;
 `
 
 const StyledLink = styled(Link)`
@@ -38,14 +39,18 @@ const StyledLink = styled(Link)`
 `
 
 const HomeIllustration = styled.img`
-    height: 506px;
+    height: 350px;
 `
 
+
+
+
 function Home() {
+    const {theme} = useContext(ThemeContext)
     return (
-        <HomePage>
+        <HomePage isDarkMode={theme === 'dark'}>
             <Display>
-                <HomeTitle>
+                <HomeTitle isDarkMode={theme === 'dark'}>
                     Repérez vos besoins, on s’occupe du reste, avec les
                     meilleurs talents
                 </HomeTitle>

@@ -4,11 +4,13 @@ import colors from "../../utils/style/color"
 import { useEffect, useState } from "react"
 import Loader from "../../utils/Atom"
 
+
 //Style
 const Display = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height:calc(100vh - 200px);
 `
 
 const H1 = styled.h1`

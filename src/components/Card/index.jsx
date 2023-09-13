@@ -2,24 +2,26 @@ import PropTypes from 'prop-types'
 import DefaultPicture from '../../assets/profile.png'
 import styled from 'styled-components'
 import colors from '../../utils/style/color'
+import { ThemeContext } from '../../utils/context/index'
+import { useContext } from 'react'
 
 
 const CardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: ${colors.backgroundLight};
+    background-color: ${({ isDarkMode }) => (isDarkMode ? colors.darkModeLight : colors.backgroundLight)};
     border-radius: 30px;
     transition: 200ms;
     align-items:center;
     &:hover {
         cursor: pointer;
-        box-shadow: 2px 2px 10px #e2e3e9;
+        box-shadow: ${({ isDarkMode }) => (isDarkMode ? '2px 2px 4px black' : '2px 2px 10px #e2e3e9')};
     }
 `
 
 const CardLabel = styled.span`
-color: #5843e4;
+    color: ${({ isDarkMode }) => (isDarkMode ? "white" : colors.primary)};
     font-size: 22px;
     font-weight: bold;
     align-self:flex-start;
@@ -37,9 +39,11 @@ const Name =styled.span`
 `
 
 function Card({ label, title, picture }) {
+    const {theme} = useContext(ThemeContext)
+
     return (
-        <CardWrapper>
-            <CardLabel>{label}</CardLabel>
+        <CardWrapper isDarkMode = {theme === 'dark'}>
+            <CardLabel isDarkMode = {theme === 'dark'}>{label}</CardLabel>
             <CardImage src={picture} alt="freelance"/>
             <Name>{title}</Name>
         </CardWrapper>

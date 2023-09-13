@@ -4,13 +4,14 @@ import styled from "styled-components"
 import colors from "../../utils/style/color"
 import { useEffect, useState, useContext } from "react"
 import Loader from "../../utils/Atom"
-import { SurveyContext } from "../../utils/context"
+import { SurveyContext, ThemeContext } from "../../utils/context"
 
 //Style
 const SurveyContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height:calc(100vh - 200px);
 `
 
 const QuestionTitle = styled.h2`
@@ -25,7 +26,6 @@ const QuestionContent = styled.span`
 const LinkWrapper = styled.div`
     padding-top: 30px;
     & a {
-        color: black;
     }
     & a:first-of-type {
         margin-right: 20px;
@@ -39,7 +39,9 @@ const ReplyBox = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${colors.backgroundLight};
+    background-color: ${({ isDarkMode }) =>
+        isDarkMode ? colors.darkModeLight : colors.backgroundLight};
+
     border-radius: 30px;
     cursor: pointer;
     box-shadow: ${(props) =>
@@ -62,6 +64,7 @@ function Survey() {
     const [isDataLoading, setDataLoading] = useState(false)
     const [error, setError] = useState(false)
     const { saveAnswers, answers } = useContext(SurveyContext)
+    const { theme } = useContext(ThemeContext)
 
     function saveReply(answer) {
         saveAnswers({ [questionNumber]: answer })
@@ -113,12 +116,14 @@ function Survey() {
             {answers && (
                 <ReplyWrapper>
                     <ReplyBox
+                        isDarkMode={theme === "dark"}
                         onClick={() => saveReply(true)}
                         isSelected={answers[questionNumber] === true}
                     >
                         Oui
                     </ReplyBox>
                     <ReplyBox
+                        isDarkMode={theme === "dark"}
                         onClick={() => saveReply(false)}
                         isSelected={answers[questionNumber] === false}
                     >

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import colors from "../../utils/style/color"
-import logo from "../../assets/dark-logo.png"
+import darkLogo from "../../assets/dark-logo.png"
+import lightLogo from "../../assets/light-logo.png"
+import { ThemeContext } from "../../utils/context"
+import { useContext } from "react"
 
 const HeaderStyle = styled.header`
     width: 100%;
@@ -10,6 +13,9 @@ const HeaderStyle = styled.header`
     align-items: center;
     justify-content: space-between;
     padding: 40px;
+    position:sticky;
+    top:0;
+    background:${({ isDarkMode }) => (isDarkMode ? colors.darkModeDark : 'white')};
 `
 
 const Logo = styled.img`
@@ -27,13 +33,16 @@ const StyledLink = styled(Link)`
 `
 
 function Header() {
+    const { theme } = useContext(ThemeContext)
     return (
-        <HeaderStyle>
-            <Logo src={logo} />
+        <HeaderStyle isDarkMode={theme === 'dark'}>
+            <Logo src={theme === "light" ? darkLogo : lightLogo} />
             <nav>
                 <StyledLink to="/">Accueil</StyledLink>
                 <StyledLink to="/freelances">Profils</StyledLink>
-                <StyledLink to="/survey/1" $isFullLink>Faire le test</StyledLink>
+                <StyledLink to="/survey/1" $isFullLink>
+                    Faire le test
+                </StyledLink>
             </nav>
         </HeaderStyle>
     )

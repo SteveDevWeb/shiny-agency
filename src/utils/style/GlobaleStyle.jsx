@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { ThemeContext } from '../context/index'
 import { createGlobalStyle } from "styled-components"
+import colors from "../style/color"
 
 const StyledGlobalStyle = createGlobalStyle`
     * {
@@ -8,12 +9,13 @@ const StyledGlobalStyle = createGlobalStyle`
         margin:0;
         box-sizing: border-box;
         font-family: 'Trebuchet MS', Helvetica, sans-serif;
+        color:${({ isDarkMode }) => (isDarkMode ? 'white' : colors.darkModeDark)};
     }
- 
-    body {
-        background-color: ${({ isDarkMode }) => (isDarkMode ? 'black' : 'white')};
-        margin: 0;  
+    body{
+        background-color: ${({ isDarkMode }) => (isDarkMode ? colors.darkModeDark : 'white')};
+        margin: 0; 
     }
+   
 `
 
 function GlobalStyle() {

@@ -41,8 +41,8 @@ const ReplyBox = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${({ isDarkMode }) =>
-        isDarkMode ? colors.darkModeLight : colors.backgroundLight};
+    background-color: ${({ isdarkmode }) =>
+        isdarkmode ? colors.darkModeLight : colors.backgroundLight};
 
     border-radius: 30px;
     cursor: pointer;
@@ -62,15 +62,14 @@ function Survey() {
     const prevQuestionNumber =
         questionNumberInt === 1 ? 1 : questionNumberInt - 1
     const nextQuestionNumber = questionNumberInt + 1
-    const [surveyData, setSurveyData] = useState({})
-    const [isDataLoading, setDataLoading] = useState(false)
-    const [error, setError] = useState(false)
+
     const { saveAnswers, answers } = useContext(SurveyContext)
-    const { theme } = useContext(ThemeContext)
 
     function saveReply(answer) {
         saveAnswers({ [questionNumber]: answer })
     }
+
+    const theme = useContext(ThemeContext)
 
     // useEffect(() => {
     //     setDataLoading(true)
@@ -81,6 +80,10 @@ function Survey() {
     //             setDataLoading(false)
     //         })
     // }, [])
+    
+    const [surveyData, setSurveyData] = useState({})
+    const [isDataLoading, setDataLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         async function fetchSurvey() {
@@ -107,6 +110,7 @@ function Survey() {
         return <Error>Oups, une erreur est survenue...</Error>
     }
 
+
     return (
         <SurveyContainer>
             <QuestionTitle>Question {questionNumber}</QuestionTitle>
@@ -118,7 +122,7 @@ function Survey() {
             {answers && (
                 <ReplyWrapper>
                     <ReplyBox
-                        isDarkMode={theme === "dark"}
+                        isdarkmode={theme=== "dark"}
                         onClick={() => saveReply(true)}
                         isSelected={answers[questionNumber] === true}
                     >

@@ -2,8 +2,7 @@ import styled from "styled-components"
 import colors from "../../utils/style/color"
 import homeIllustration from "../../assets/home-illustration.svg"
 import { Link } from "react-router-dom"
-import { ThemeContext } from "../../utils/context/index"
-import { useContext } from "react"
+import { useTheme } from "../../utils/hooks/index"
 
 const HomePage = styled.section`
     background: ${({ isDarkMode }) => (isDarkMode ? colors.darkModeLight : colors.backgroundLight)};
@@ -47,11 +46,10 @@ const HomeIllustration = styled.img`
 
 
 function Home() {
-    const {theme} = useContext(ThemeContext)
     return (
-        <HomePage isDarkMode={theme === 'dark'}>
+        <HomePage isDarkMode={useTheme() === 'dark'}>
             <Display>
-                <HomeTitle isDarkMode={theme === 'dark'}>
+                <HomeTitle isDarkMode={useTheme() === 'dark'}>
                     Repérez vos besoins, on s’occupe du reste, avec les
                     meilleurs talents
                 </HomeTitle>

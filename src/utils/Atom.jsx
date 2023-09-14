@@ -12,7 +12,7 @@ const rotate = keyframes`
 `
  
 const Loader = styled.div`
-    margin-top:20px;
+    margin:20px 0;
     padding: 10px;
     border: 6px solid ${colors.primary};
     border-bottom-color: transparent;

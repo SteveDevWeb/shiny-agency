@@ -11,7 +11,9 @@ const SurveyContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height:calc(100vh - 200px);
+    min-height: calc(100vh - 200px);
+    max-width: 1400px;
+    margin:0 auto;
 `
 
 const QuestionTitle = styled.h2`

@@ -7,12 +7,13 @@ import { useContext } from "react"
 
 const HomePage = styled.section`
     background: ${({ isDarkMode }) => (isDarkMode ? colors.darkModeLight : colors.backgroundLight)};
-    margin-left: clamp(10px, 5%, 65px);
-    margin-right: clamp(10px, 5%, 65px);
     min-height: calc(100vh - 200px);
     padding: 5% 5%;
     display: flex;
     align-items: center;
+    max-width:1400px ;
+    min-width:calc( 100vw - 200px);
+    margin:0 auto;
 `
 
 const Display = styled.div`

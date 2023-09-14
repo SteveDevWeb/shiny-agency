@@ -9,7 +9,8 @@ Mise en page : EsLint, Prettier\
 Navigation : React Router => Routes, Links, useParams()\
 Typage : PropTypes\
 Style : Styled Components\
-API : Native
+API : Fetch\
+Global State Management : Context
 
 ### `npm start`
 

@@ -11,6 +11,8 @@ const Display = styled.section`
     flex-direction: column;
     align-items: center;
     min-height:calc(100vh - 200px);
+    max-width:1400px;
+    margin:0 auto;
 `
 
 const H1 = styled.h1`

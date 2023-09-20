@@ -13,7 +13,7 @@ const SurveyContainer = styled.div`
     align-items: center;
     min-height: calc(100vh - 200px);
     max-width: 1400px;
-    margin:0 auto;
+    margin: 0 auto;
 `
 
 const QuestionTitle = styled.h2`
@@ -41,8 +41,8 @@ const ReplyBox = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${({ isdarkmode }) =>
-        isdarkmode ? colors.darkModeLight : colors.backgroundLight};
+    background-color: ${({ isDarkMode }) =>
+        isDarkMode ? colors.darkModeLight : colors.backgroundLight};
 
     border-radius: 30px;
     cursor: pointer;
@@ -69,7 +69,7 @@ function Survey() {
         saveAnswers({ [questionNumber]: answer })
     }
 
-    const theme = useContext(ThemeContext)
+    const {theme} = useContext(ThemeContext)
 
     // useEffect(() => {
     //     setDataLoading(true)
@@ -80,7 +80,7 @@ function Survey() {
     //             setDataLoading(false)
     //         })
     // }, [])
-    
+
     const [surveyData, setSurveyData] = useState({})
     const [isDataLoading, setDataLoading] = useState(false)
     const [error, setError] = useState(false)
@@ -110,7 +110,6 @@ function Survey() {
         return <Error>Oups, une erreur est survenue...</Error>
     }
 
-
     return (
         <SurveyContainer>
             <QuestionTitle>Question {questionNumber}</QuestionTitle>
@@ -122,7 +121,7 @@ function Survey() {
             {answers && (
                 <ReplyWrapper>
                     <ReplyBox
-                        isdarkmode={theme=== "dark"}
+                        isDarkMode={theme === "dark"}
                         onClick={() => saveReply(true)}
                         isSelected={answers[questionNumber] === true}
                     >

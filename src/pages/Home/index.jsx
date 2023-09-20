@@ -11,7 +11,6 @@ const HomePage = styled.section`
     display: flex;
     align-items: center;
     max-width:1400px ;
-    min-width:calc( 100vw - 200px);
     margin:0 auto;
 `
 

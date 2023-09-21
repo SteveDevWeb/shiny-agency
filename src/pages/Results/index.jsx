@@ -120,7 +120,7 @@ function Results() {
         return <Error>Il y a un problème...</Error>
     }
     const resultsData = resultsDataFetch?.resultsData
-
+    console.log(resultsDataFetch)
     return isDataLoading ? (
         <LoaderWrapper>
             <Loader />

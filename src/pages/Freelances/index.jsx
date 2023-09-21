@@ -66,7 +66,9 @@ export default function Freelances() {
         display: block;
         text-align: center;
     `
-
+    useEffect(() => {
+        document.title = 'Freelances'; // Mettez ici le titre que vous souhaitez
+      }, []);
 
     return (
         <Display>

@@ -71,6 +71,11 @@ function Survey() {
 
     const {theme} = useContext(ThemeContext)
 
+
+    useEffect(() => {
+        document.title = 'Votre test'; // Mettez ici le titre que vous souhaitez
+      }, []);
+
     // useEffect(() => {
     //     setDataLoading(true)
     //     fetch(`http://localhost:8000/survey`)
@@ -109,6 +114,8 @@ function Survey() {
     if (error) {
         return <Error>Oups, une erreur est survenue...</Error>
     }
+
+
 
     return (
         <SurveyContainer>

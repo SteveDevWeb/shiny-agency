@@ -3,6 +3,7 @@ import colors from "../../utils/style/color"
 import homeIllustration from "../../assets/home-illustration.svg"
 import { Link } from "react-router-dom"
 import { useTheme } from "../../utils/hooks/index"
+import { useEffect } from "react"
 
 const HomePage = styled.section`
     background: ${({ isDarkMode }) => (isDarkMode ? colors.darkModeLight : colors.backgroundLight)};
@@ -45,6 +46,9 @@ const HomeIllustration = styled.img`
 
 
 function Home() {
+    useEffect(() => {
+        document.title = 'Accueil'; // Mettez ici le titre que vous souhaitez
+      }, []);
     return (
         <HomePage isDarkMode={useTheme() === 'dark'}>
             <Display>

@@ -10,7 +10,8 @@ Navigation : React Router => Routes, Links, useParams()\
 Typage : PropTypes\
 Style : Styled Components\
 API : Fetch\
-Global State Management : Context
+Global State Management : Context\
+Testing : JEST
 
 ### `npm start`
 

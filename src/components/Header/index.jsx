@@ -16,10 +16,17 @@ const HeaderStyle = styled.header`
     position:sticky;
     top:0;
     background:${({ isDarkMode }) => (isDarkMode ? colors.darkModeDark : 'white')};
+    @media (max-width: 768px) {
+        justify-content:center;
+        padding:10px;
+    }
 `
 
 const Logo = styled.img`
     height: 70px;
+    @media (max-width: 768px) {
+        display:none;    
+    }
 `
 
 const StyledLink = styled(Link)`

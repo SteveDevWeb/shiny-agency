@@ -13,6 +13,9 @@ const HomePage = styled.section`
     align-items: center;
     max-width:1400px ;
     margin:0 auto;
+    @media (max-width: 768px) {
+        flex-direction:column;
+    }
 `
 
 const Display = styled.div`
@@ -36,6 +39,10 @@ const StyledLink = styled(Link)`
     ${(props) =>
         props.$isFullLink &&
         `color: white; border-radius: 30px; background-color: ${colors.primary};`}
+    @media (max-width: 768px) {
+        align-self:center;
+        margin-bottom:50px;
+    }
 `
 
 const HomeIllustration = styled.img`

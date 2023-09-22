@@ -5,6 +5,8 @@ import Loader from "../../utils/Atom"
 import { ThemeContext } from "../../utils/context/index"
 import { Link } from "react-router-dom"
 import colors from "../../utils/style/color"
+import homeIllustration from "../../assets/home-illustration.svg"
+
 
 const StyledLink = styled(Link)`
     padding: 8px 25px;
@@ -16,23 +18,23 @@ const StyledLink = styled(Link)`
         `color: white; border-radius: 30px; background-color: ${colors.primary};`}
 `
 const ResultsContainer = styled.div`
+    padding:50px 0px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: calc(100vh - 200px);
     max-width: 1400px;
-    background:${({isDarkMode})=> (isDarkMode? 'none':colors.backgroundLight)};
+    background: ${({ isDarkMode }) =>
+        isDarkMode ? "none" : colors.backgroundLight};
 `
 
 const ResultsTitle = styled.h2`
-    margin: 30px 0;
+    margin: 40px 0;
     font-weight: bold;
     font-size: 28px;
     max-width: 60%;
     text-align: center;
-    & > span {
-        padding-left: 10px;
-    }
 `
 
 const DescriptionWrapper = styled.div`
@@ -45,12 +47,12 @@ const JobTitle = styled.span`
 
 const JobDescription = styled.div`
     font-size: 18px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     & > p {
         margin-block-start: 5px;
     }
     & > span {
-        font-size: 20px;
+        font-size: 25px;
     }
 `
 
@@ -58,6 +60,13 @@ const LoaderWrapper = styled.div`
     display: flex;
     justify-content: center;
 `
+
+
+const HomeIllustration = styled.img`
+    height: 350px;
+    margin-top:50px;
+`
+
 
 export function formatQueryParams(answers) {
     const answerNumbers = Object.keys(answers)
@@ -84,6 +93,7 @@ function Results() {
 
     const { theme } = useContext(ThemeContext)
     const { answers } = useContext(SurveyContext)
+    console.log("answers : ")
     console.log(answers)
     const queryParams = formatQueryParams(answers)
 
@@ -119,15 +129,28 @@ function Results() {
         return <Error>Il y a un problème...</Error>
     }
     const resultsData = resultsDataFetch?.resultsData
-    console.log(resultsDataFetch)
+
+    if (Object.keys(answers).length === 0 && answers.constructor === Object) {
+        return (
+            <ResultsContainer isDarkMode={theme === "dark"}>
+                <ResultsTitle>
+                    Découvrez les compétences dont vous avez besoin 💻
+                </ResultsTitle>
+                <StyledLink $isFullLink to="/survey/1">
+                    Faire le test
+                </StyledLink>
+                <HomeIllustration src={homeIllustration} alt="" />
+            </ResultsContainer>
+        )
+    }
     return isDataLoading ? (
         <LoaderWrapper>
             <Loader />
         </LoaderWrapper>
     ) : (
-        <ResultsContainer isDarkMode={theme==='dark'}>
+        <ResultsContainer isDarkMode={theme === "dark"}>
             <ResultsTitle>
-                Les compétences dont vous avez besoin:
+                Les compétences dont vous avez besoin&nbsp;:<br></br>
                 {resultsData &&
                     resultsData.map((result, index) => (
                         <JobTitle key={`result-title-${index}-${result.title}`}>

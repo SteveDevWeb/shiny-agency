@@ -27,8 +27,6 @@ const QuestionContent = styled.span`
 
 const LinkWrapper = styled.div`
     padding-top: 30px;
-    & a {
-    }
     & a:first-of-type {
         margin-right: 20px;
     }
@@ -54,6 +52,9 @@ const ReplyWrapper = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
+    @media (max-width: 768px) {
+        flex-direction:column;
+    }
 `
 
 function Survey() {

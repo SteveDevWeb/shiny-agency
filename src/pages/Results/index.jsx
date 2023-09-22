@@ -19,13 +19,13 @@ const ResultsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 60px 90px;
-    padding: 30px;
-    background-color: ;
+    min-height: calc(100vh - 200px);
+    max-width: 1400px;
+    background:${({isDarkMode})=> (isDarkMode? 'none':colors.backgroundLight)};
 `
 
 const ResultsTitle = styled.h2`
-    color: ;
+    margin: 30px 0;
     font-weight: bold;
     font-size: 28px;
     max-width: 60%;
@@ -40,14 +40,13 @@ const DescriptionWrapper = styled.div`
 `
 
 const JobTitle = styled.span`
-    color: ;
     text-transform: capitalize;
 `
 
 const JobDescription = styled.div`
     font-size: 18px;
+    margin-bottom:10px;
     & > p {
-        color: ;
         margin-block-start: 5px;
     }
     & > span {
@@ -126,9 +125,9 @@ function Results() {
             <Loader />
         </LoaderWrapper>
     ) : (
-        <ResultsContainer>
+        <ResultsContainer isDarkMode={theme==='dark'}>
             <ResultsTitle>
-                Les compétences dont vous avez besoin :
+                Les compétences dont vous avez besoin:
                 {resultsData &&
                     resultsData.map((result, index) => (
                         <JobTitle key={`result-title-${index}-${result.title}`}>

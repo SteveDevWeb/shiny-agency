@@ -1,6 +1,8 @@
-
+import { useParams } from "react-router-dom"
 
 
 export default function Profile(){
-    return <div>Hello</div>
+    let idProfile= useParams();
+    console.log( idProfile.id)
+    return <div>Hello </div>
 }

@@ -1,18 +1,18 @@
 import Card from "../../components/Card"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 import colors from "../../utils/style/color"
 import { useEffect, useState } from "react"
 import Loader from "../../utils/Atom"
-
 
 //Style
 const Display = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height:calc(100vh - 200px);
-    max-width:1400px;
-    margin:0 auto;
+    min-height: calc(100vh - 200px);
+    max-width: 1400px;
+    margin: 0 auto;
 `
 
 const H1 = styled.h1`
@@ -50,7 +50,7 @@ export default function Freelances() {
             try {
                 const response = await fetch(`http://localhost:8000/freelances`)
                 const freelancesDataResponse = await response.json()
-
+                console.log(freelancesDataResponse)
                 setFreelancesData(freelancesDataResponse.freelancersList)
             } catch (err) {
                 console.log("===== error =====", err)
@@ -67,8 +67,8 @@ export default function Freelances() {
         text-align: center;
     `
     useEffect(() => {
-        document.title = 'Freelances'; // Mettez ici le titre que vous souhaitez
-      }, []);
+        document.title = "Freelances"
+    }, [])
 
     return (
         <Display>
@@ -81,12 +81,14 @@ export default function Freelances() {
             ) : (
                 <CardsContainer>
                     {freelancesData.map((profile, index) => (
-                        <Card
-                            key={`${profile.name}-${index}`}
-                            label={profile.job}
-                            picture={profile.picture}
-                            title={profile.name}
-                        />
+                        <Link to={`/profile/${profile.id}`}>
+                            <Card
+                                key={`${profile.name}-${index}`}
+                                label={profile.job}
+                                picture={profile.picture}
+                                title={profile.name}
+                            />
+                        </Link>
                     ))}
                 </CardsContainer>
             )}

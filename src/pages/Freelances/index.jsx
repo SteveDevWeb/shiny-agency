@@ -39,6 +39,10 @@ const CardsContainer = styled.div`
     padding: 30px;
 `
 
+const StyledLink = styled(Link)`
+    text-decoration:none;
+`
+
 export default function Freelances() {
     const [freelancesData, setFreelancesData] = useState([])
     const [error, setError] = useState(false)
@@ -81,14 +85,14 @@ export default function Freelances() {
             ) : (
                 <CardsContainer>
                     {freelancesData.map((profile, index) => (
-                        <Link to={`/profile/${profile.id}`}>
+                        <StyledLink to={`/profile/${profile.id}`}>
                             <Card
                                 key={`${profile.name}-${index}`}
                                 label={profile.job}
                                 picture={profile.picture}
                                 title={profile.name}
                             />
-                        </Link>
+                        </StyledLink>
                     ))}
                 </CardsContainer>
             )}

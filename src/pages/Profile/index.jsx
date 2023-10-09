@@ -2,6 +2,9 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Loader from "../../utils/Atom"
 import styled from "styled-components"
+import { ThemeContext } from "../../utils/context/index"
+import { useContext } from "react"
+import colors from "../../utils/style/color"
 
 const Display = styled.section`
     display: flex;
@@ -10,6 +13,52 @@ const Display = styled.section`
     min-height: calc(100vh - 200px);
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 5%;
+`
+const ProfileDisplay = styled.div`
+    background: red;
+    padding: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    background-color: ${({ isDarkMode }) =>
+        isDarkMode ? colors.darkModeLight : colors.backgroundLight};
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 50px;
+    }
+`
+
+const ProfileDetails = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+`
+const ProfileImg = styled.img`
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    @media (max-width: 768px) {
+        align-self: center;
+    }
+`
+
+const ProfileName = styled.span`
+    font-size: 30px;
+`
+const ProfileAvailable = styled.span`
+    font-size: 15px;
+`
+const ProfileJob = styled.span`
+    font-size: 20px;
+`
+const ProfileLocation = styled.span``
+const ProfilePrice = styled.span`
+    font-size: 25px;
 `
 
 export default function Profile() {
@@ -18,6 +67,8 @@ export default function Profile() {
     const [profileData, setProfileData] = useState({})
     const [error, setError] = useState(false)
     const [isDataLoading, setDataLoading] = useState(false)
+
+    const { theme } = useContext(ThemeContext)
 
     useEffect(() => {
         async function fetchProfile() {
@@ -37,7 +88,7 @@ export default function Profile() {
             }
         }
         fetchProfile()
-    }, [])
+    }, [idProfile.id])
 
     const Error = styled.span`
         display: block;
@@ -51,22 +102,31 @@ export default function Profile() {
             ) : isDataLoading ? (
                 <Loader />
             ) : (
-                <div>
-                    <img
+                <ProfileDisplay isDarkMode={theme === "dark"}>
+                    <ProfileImg
                         src={`${profileData.picture}`}
                         alt="profilePicture"
-                    ></img>
-                    {`nom : ${profileData.name}`} <br></br>
-                    {`dispo : ${profileData.available}`}
-                    <br></br>
-                    {`métier : ${profileData.job}`}
-                    <br></br>
-                    {`Lieu : ${profileData.location}`}
-                    <br></br>
-                    {`Taux Journalier Moyen : ${profileData.tjm}€`}
-                    <br></br>
-                    {`Compétences : ${profileData.skills}`}
-                </div>
+                    ></ProfileImg>
+                    <ProfileDetails>
+                        <ProfileName>{profileData.name} </ProfileName>
+                        <ProfileLocation>
+                            {`📍 ${profileData.location}`}
+                        </ProfileLocation>
+
+                        <ProfileJob>{`${profileData.job}`}</ProfileJob>
+                        <ul>{profileData.skills}</ul>
+
+                        <ProfileAvailable>
+                            {profileData.available
+                                ? `🟢 Disponile maintenant`
+                                : `🔴 Indisponible pour le moment`}
+                        </ProfileAvailable>
+
+                        <ProfilePrice>
+                            {`${profileData.tjm}€ / jour`}
+                        </ProfilePrice>
+                    </ProfileDetails>
+                </ProfileDisplay>
             )}
         </Display>
     )

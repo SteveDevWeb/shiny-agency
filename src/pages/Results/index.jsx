@@ -5,10 +5,10 @@ import Loader from "../../utils/Atom"
 import { ThemeContext } from "../../utils/context/index"
 import { Link } from "react-router-dom"
 import colors from "../../utils/style/color"
-import homeIllustration from "../../assets/home-illustration.svg"
-
+import surveyError from "../../assets/survey-error.svg"
 
 const StyledLink = styled(Link)`
+    margin-top: 20px;
     padding: 8px 25px;
     color: #8186a0;
     text-decoration: none;
@@ -18,7 +18,7 @@ const StyledLink = styled(Link)`
         `color: white; border-radius: 30px; background-color: ${colors.primary};`}
 `
 const ResultsContainer = styled.div`
-    padding:50px 0px;
+    padding: 50px 0px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -26,11 +26,10 @@ const ResultsContainer = styled.div`
     min-height: calc(100vh - 200px);
     max-width: 1400px;
     background: ${({ isDarkMode }) =>
-        isDarkMode ? "none" : colors.backgroundLight};
+        isDarkMode ? colors.darkModeLight : colors.backgroundLight};
 `
 
 const ResultsTitle = styled.h2`
-    margin: 40px 0;
     font-weight: bold;
     font-size: 28px;
     max-width: 60%;
@@ -61,12 +60,11 @@ const LoaderWrapper = styled.div`
     justify-content: center;
 `
 
-
 const HomeIllustration = styled.img`
-    height: 350px;
-    margin-top:50px;
+    width: 90%;
+    max-width: 300px;
+    margin: 20px 0;
 `
-
 
 export function formatQueryParams(answers) {
     const answerNumbers = Object.keys(answers)
@@ -82,7 +80,7 @@ export function formatJobList(title, listLength, index) {
     if (index === listLength - 1) {
         return title
     } else {
-        return `${title},`
+        return `${title}, `
     }
 }
 
@@ -130,16 +128,17 @@ function Results() {
     }
     const resultsData = resultsDataFetch?.resultsData
 
-    if (Object.keys(answers).length === 0 && answers.constructor === Object) {
+    if (
+        (Object.keys(answers).length === 0 && answers.constructor === Object) ||
+        Object.values(answers).every((value) => value === false)
+    ) {
         return (
             <ResultsContainer isDarkMode={theme === "dark"}>
+                <ResultsTitle>Dommage ...</ResultsTitle>
+                <HomeIllustration src={surveyError} alt="" />
                 <ResultsTitle>
-                    Découvrez les compétences dont vous avez besoin 💻
+                    Il semblerait que vous n’ayez besoin d’aucune compétence...
                 </ResultsTitle>
-                <StyledLink $isFullLink to="/survey/1">
-                    Faire le test
-                </StyledLink>
-                <HomeIllustration src={homeIllustration} alt="" />
             </ResultsContainer>
         )
     }

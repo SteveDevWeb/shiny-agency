@@ -3,7 +3,6 @@ import { createContext, useState, useEffect } from "react"
 export const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
-
     const savedTheme = localStorage.getItem("Theme")
     const [theme, setTheme] = useState(
         savedTheme ? JSON.parse(savedTheme) : "dark"
@@ -13,8 +12,6 @@ export const ThemeProvider = ({ children }) => {
         localStorage.setItem("Theme", JSON.stringify(theme))
     }, [theme])
 
-
-    
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light")
     }
@@ -29,7 +26,16 @@ export const ThemeProvider = ({ children }) => {
 export const SurveyContext = createContext()
 
 export const SurveyProvider = ({ children }) => {
-    const [answers, setAnswers] = useState({})
+    const savedAnswers = localStorage.getItem("Answers")
+    const [answers, setAnswers] = useState(
+        savedAnswers ? JSON.parse(savedAnswers) : {}
+    )
+
+    useEffect(() => {
+        localStorage.setItem("Answers", JSON.stringify(answers))
+    }, [answers])
+
+    
     const saveAnswers = (newAnswers) => {
         setAnswers({ ...answers, ...newAnswers })
     }

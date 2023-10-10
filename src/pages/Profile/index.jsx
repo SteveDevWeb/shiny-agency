@@ -66,6 +66,7 @@ const ProfileSkills = styled.ul`
     list-style-type: none;
     display: flex;
     gap:6px;
+    flex-wrap:wrap;
 `
 const Skill = styled.li`
     border-radius: 8px;
@@ -135,8 +136,8 @@ export default function Profile() {
 
                         <ProfileAvailable>
                             {profileData.available
-                                ? `🟢 Disponile maintenant`
-                                : `🔴 Indisponible pour le moment`}
+                                ? `🟢  Disponile maintenant`
+                                : `🔴  Indisponible pour le moment`}
                         </ProfileAvailable>
 
                         <ProfilePrice>

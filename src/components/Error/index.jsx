@@ -1,12 +1,15 @@
 import colors from "../../utils/style/color"
 import styled from "styled-components"
 import errorIllustration from "../../assets/404.svg"
+import { ThemeContext } from "../../utils/context/index"
+import { useContext } from "react"
 
 const Display = styled.section`
-    background: ${colors.backgroundLight};
+    background-color: ${({ isDarkMode }) =>
+        isDarkMode ? colors.darkModeLight : colors.backgroundLight};
     margin-left: clamp(10px, 5%, 65px);
     margin-right: clamp(10px, 5%, 65px);
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 200px);
     padding: 0 5%;
     display: flex;
     align-items: center;
@@ -21,13 +24,16 @@ const ErrorText = styled.span`
 `
 
 const ErrorIllustration = styled.img`
-    height: 300px;
+    width: 90%;
+    max-width:300px;
     margin: 40px 0;
 `
 
 function Error() {
+    const { theme } = useContext(ThemeContext)
+
     return (
-        <Display>
+        <Display isDarkMode={theme === "dark"}>
             <ErrorText>Oups...</ErrorText>
             <ErrorIllustration src={errorIllustration} />
             <ErrorText>Il semblerait qu’il y ait un problème</ErrorText>

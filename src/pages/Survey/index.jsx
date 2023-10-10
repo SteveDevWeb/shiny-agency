@@ -53,7 +53,7 @@ const ReplyWrapper = styled.div`
     flex-direction: row;
     gap: 20px;
     @media (max-width: 768px) {
-        flex-direction:column;
+        flex-direction: column;
     }
 `
 
@@ -70,12 +70,11 @@ function Survey() {
         saveAnswers({ [questionNumber]: answer })
     }
 
-    const {theme} = useContext(ThemeContext)
-
+    const { theme } = useContext(ThemeContext)
 
     useEffect(() => {
-        document.title = 'Votre test'; // Mettez ici le titre que vous souhaitez
-      }, []);
+        document.title = "Votre test" // Mettez ici le titre que vous souhaitez
+    }, [])
 
     // useEffect(() => {
     //     setDataLoading(true)
@@ -115,8 +114,6 @@ function Survey() {
     if (error) {
         return <Error>Oups, une erreur est survenue...</Error>
     }
-
-
 
     return (
         <SurveyContainer>

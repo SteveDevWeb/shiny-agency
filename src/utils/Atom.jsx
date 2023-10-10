@@ -1,6 +1,6 @@
-import colors from '../utils/style/color'
-import styled, { keyframes } from 'styled-components'
- 
+import colors from "./style/color"
+import styled, { keyframes } from "styled-components"
+
 const rotate = keyframes`
     from {
         transform: rotate(0deg);
@@ -10,9 +10,9 @@ const rotate = keyframes`
     transform: rotate(360deg);
     }
 `
- 
+
 const Loader = styled.div`
-    margin:20px 0;
+    margin: 20px 0;
     padding: 10px;
     border: 6px solid ${colors.primary};
     border-bottom-color: transparent;

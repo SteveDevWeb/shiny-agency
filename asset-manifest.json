@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.js": "/shiny-agency/static/js/main.58bdf3a1.js",
+    "main.js": "/shiny-agency/static/js/main.2699d863.js",
     "static/media/profile.png": "/shiny-agency/static/media/profile.d09dc5afad47b0898716.png",
+    "static/media/survey-error.svg": "/shiny-agency/static/media/survey-error.3247605ccf64801fb2af85dd87b245c9.svg",
     "static/media/404.svg": "/shiny-agency/static/media/404.fc9ddee48547c71d5534244cfc2a911c.svg",
     "static/media/home-illustration.svg": "/shiny-agency/static/media/home-illustration.3c3e6fa7e38c96aae00aea10c3cbf9cd.svg",
     "index.html": "/shiny-agency/index.html",
-    "main.58bdf3a1.js.map": "/shiny-agency/static/js/main.58bdf3a1.js.map"
+    "main.2699d863.js.map": "/shiny-agency/static/js/main.2699d863.js.map"
   },
   "entrypoints": [
-    "static/js/main.58bdf3a1.js"
+    "static/js/main.2699d863.js"
   ]
 }

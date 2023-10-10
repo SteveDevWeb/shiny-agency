@@ -37,6 +37,7 @@ const ProfileDetails = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
+    justify-content:center;
 `
 const ProfileImg = styled.img`
     height: 200px;
@@ -57,8 +58,20 @@ const ProfileJob = styled.span`
     font-size: 20px;
 `
 const ProfileLocation = styled.span``
+
 const ProfilePrice = styled.span`
     font-size: 25px;
+`
+const ProfileSkills = styled.ul`
+    list-style-type: none;
+    display: flex;
+    gap:6px;
+`
+const Skill = styled.li`
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: ${({ isDarkMode }) =>
+        isDarkMode ? "1.5px solid white" :"1.5px solid black" };
 `
 
 export default function Profile() {
@@ -108,13 +121,17 @@ export default function Profile() {
                         alt="profilePicture"
                     ></ProfileImg>
                     <ProfileDetails>
-                        <ProfileName>{profileData.name} </ProfileName>
+                        <ProfileName>{profileData.name}</ProfileName>
                         <ProfileLocation>
                             {`📍 ${profileData.location}`}
                         </ProfileLocation>
 
                         <ProfileJob>{`${profileData.job}`}</ProfileJob>
-                        <ul>{profileData.skills}</ul>
+                        <ProfileSkills>
+                            {profileData.skills && profileData.skills.map((element, index) => (
+                                <Skill key={index} isDarkMode={theme === "dark"}>{element}</Skill>
+                            ))}
+                        </ProfileSkills>
 
                         <ProfileAvailable>
                             {profileData.available
